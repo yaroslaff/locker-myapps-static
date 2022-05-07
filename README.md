@@ -12,7 +12,10 @@ create `_config.js` file with address registerd for your myapps application at l
 locker_addr = 'myapps.l.www-security.com';
 ~~~
 
-Note, `_config.js` is listed in .gitignore file, so if you want to fork this repo and commit it with your `_config.js`, edit .gitignore too.
+# Forking this repo
+Note, `_config.js` and `CNAME` files are listed in `.gitignore`, so if you want to fork this repo for your project, edit .gitignore too.
 
-# Deploy to surge
-If you want to use [surge.sh](https://surge.sh/) for hosting (easy wasy), install surge and upload
+# Deployment examples (options)
+
+## Deploy to surge/cloudflare
+If you want to use [surge.sh](https://surge.sh/) for hosting (easy wasy), [install surge](https://surge.sh/help/getting-started-with-surge) and upload with `surge` command. Then add [custom domain](https://surge.sh/help/adding-a-custom-domain) using cloudflare as DNS service (CNAME which forwards to surge server).
