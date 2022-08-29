@@ -1,0 +1,29 @@
+<html>
+    <body>
+        <script src="_config.js"></script>
+        <script src="js/locker.js"></script>
+        
+        <script>
+            var sid1, sid2, sid3;
+            locker = new Locker(locker_addr);
+            locker.get('/sid')
+                .then(r => r.text())
+                .then(sid1 => {
+                    document.write("sid1: " + sid1 + "<br>\n");
+
+                    locker.get('/sid')
+                        .then(r => r.text())
+                        .then(sid2 => {
+                            document.write("sid2: " + sid2 + "<br>\n");
+                            
+                            if(sid2 == sid1){
+                                document.write("SIDs matches, good!")
+                            }else{
+                                document.write("SIDs mismatches, bad! Probabl you are using different domains")
+                            }
+  
+                        })
+                })
+        </script>
+    </body>
+</html>
