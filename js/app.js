@@ -89,7 +89,8 @@ async function load_data(){
 
 function draw_profile(){
   locker.get_json_file('~/r/userinfo.json', p => {
-    console.log("profile: %o", p)})
+    // console.log("profile: %o", p)
+  })
 }
 
 function DisplayByClass(classname, display){
@@ -156,6 +157,9 @@ function render_app(app){
 
   const status = 'Pending'
   const details = 'Waiting to be created'
+  const topdomain = locker.preload['/pubconf'].topdomain
+  const user = locker.preload['~/r/userinfo.json'].id
+  const locker_host = `${app.name}-${user}.${topdomain}`
 
   return `
       <tr class="text-gray-700 dark:text-gray-400">
@@ -164,7 +168,8 @@ function render_app(app){
           <div>
             <p class="font-semibold">${app.name}</p>
             <p class="text-xs text-gray-600 dark:text-gray-400">
-              ${app.subtitle}
+              ${app.subtitle}<br>
+              ${locker_host}
             </p>
           </div>
         </div>
