@@ -32,6 +32,25 @@ window.onload = async () => {
   }
 }
 
+function delete_app(appname){
+  locker.list_append('~/rw/requests.json',
+    {
+      'name': appname,
+      'command': 'delete_app',
+      '_timestamp': null,
+      '_id': null,
+    }  
+  )
+  .then( r => {
+    locker.set_flag('updated')
+    .then(r => {
+      console.log(`sent request to delete application ${appname}`)      
+      // update table
+      draw_create_requests()
+    })
+  })
+}
+
 function create_app(){
   field = document.getElementById("new_app_name")
   appname = field.value
@@ -153,6 +172,7 @@ function render_create_request(app){
   `
 }
 
+
 function render_app(app){
 
   const status = 'Pending'
@@ -202,6 +222,7 @@ function render_app(app){
             </svg>
           </button>
           <button
+            onclick="delete_app('${app.name}')"
             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
             aria-label="Delete"
           >
